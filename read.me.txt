@@ -1,0 +1,91 @@
+PROJECT SETUP
+
+dans le terminal :
+- npm init -y       sets all the default parameters to yes
+                    which writes all the default values in the package.json file
+
+- in package.json, change index.js en server.js
+
+- install all the dependencies needed to get a basic Express server up and running
+- for that, tape in terminal :
+    npm i express ejs express-ejs-layouts
+- that will download all the packages and add those to the package.json and create a lock file for use
+
+- the last thing is to install a development depency by calling :
+    - npm i --save-dev nodemon
+that will save this as a developement dependency (add nodemon which allows automatically refresh our server everytime we make a change)
+
+- then we go to the package.json, and create the script we want for running our server :
+    - erase "test"...
+    - add "start" : "node server.js" (starts our server normally)
+    this will start our server on a production environment without nodemon
+    - then "devStart" : "nodemon server.js" (same but automatically restarts the server at any change)
+
+- next we will set up our actual server, so we create our server.js
+- in here we're going to get Express and have our application up and running
+(see server.js file, PART I)
+
+- so we can run : npm run devStart
+- if we open up our app in localhost:3000, we can see that our server is running
+- still cannot get anything because there's no routes set in our app
+
+- for small app, we see that people put all their routes inside the server.js
+- but for larger app such as this one, it become very hard to manage
+- so we're going to use MVC to layout our app and we're going to put all our routes (or controllers) inside of a "routes" folder
+
+- so we create our folders (routes (or controllers), models, and views)
+
+- the MVC structure is set up
+
+- we can create our first route which is going to be our index route (everything for when we don't have a ressource or a model in our url) : see /routes/index.js
+
+- then we tell our application to use this route index.js
+    const indexRouter = require('./routes/index')
+    app.use('/', indexRouter)
+
+
+- refresh : we still have a issue, app is crashing because it doesn't know how to get any information from this index.js file because we're not actually exporting any information from this file
+    // go to index.js: we want to export this router that we've created and set up in this app :
+    module.exports = router
+
+- now our routes being hooked up with our actual server
+
+- we can work on integrating our routes with our views
+
+- create the layout.ejs
+- in here we set the bollerplate HTML for every page in our app (! and enter to generate a basic html format)
+- inside of the body, we want to put all of the code that goes inside of our app before and after every single page
+- inbetween we want to put the content of everything inside of our application, that's the syntax <%- body %> which is going to include every single other one of our pages right in here
+- now we can create a view for the index of our app
+- views/index.js which is going to be imported from this index.ejs into this layout.ejs where there is <%- body %>
+- now all we need to do is to go into our route (index.js) and instead of sending some basic text ('Hello world'), we want to render our view
+- replace res.send('Hello world') 
+- by res.render...
+
+
+- the last thing we have to do before our app is fully set up, is working on getting our models integrated
+- to do that we're just going to connect our app to a local mongoDB database
+- first thing is to install the library for mongoDB : npm i mongoose (mongoose is allowing us to interact with mongoDB easily inside our app)
+- now we can work on setting up our database > server.js
+
+- last thing to do is set up our application with git en tapant dans le terminal > git init
+- it will initialize our repository
+- and we create our .gitignore file, where we write all the files that git should ignore
+    - .env  // this could be sensitive informations we don't want to share with the world
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

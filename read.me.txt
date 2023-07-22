@@ -72,6 +72,17 @@ that will save this as a developement dependency (add nodemon which allows autom
 - it will initialize our repository
 - and we create our .gitignore file, where we write all the files that git should ignore
     - .env  // this could be sensitive informations we don't want to share with the world
+    - node_modules  // huge file not necessary in the github (all the libraries needed will be import into the project via json file)
+- command git add .
+- command git commit -m "inital setup"
+- on github create a new repository
+- command given : git remote....
+- command given : git push...
+
+- last thing is to deploy this code to an actual server so we can view this on the internet
+- Netlify
+- and create a database via MondoDB Atlas
+
 
 
 
